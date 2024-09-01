@@ -1,0 +1,3 @@
+const LOCAL_STORAGE_PREFIX = "BLACKJACK"
+export const THEME_KEY = `${LOCAL_STORAGE_PREFIX}-theme`
+export const POT_KEY = `${LOCAL_STORAGE_PREFIX}-pot`

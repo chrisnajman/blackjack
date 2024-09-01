@@ -1,0 +1,383 @@
+*,
+::after,
+::before {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+:root {
+    color-scheme: light dark;
+    overflow-y: scroll;
+    --bold: 600;
+    --focus: orange;
+    --btn-blue: rgb(64, 92, 245);
+
+    --bg: black;
+    --fg: white;
+    --bg-main: rgb(0, 100, 0);
+    --ui-bg: var(--bg);
+    background-color: var(--bg);
+    color: var(--fg);
+    --shadow: 0.1875rem 0.1875rem 0.3125rem 0rem rgba(0, 0, 0, 1);
+    --opacity-disabled: 0.75;
+}
+
+.lightmode {
+    --bg: white;
+    --fg: black;
+    --ui-bg: var(--bg);
+    --shadow: 0.1875rem 0.1875rem 0.3125rem 0rem rgba(0, 0, 0, 0.33);
+    background-color: var(--bg);
+    color: var(--fg);
+    --opacity-disabled: 0.5;
+}
+
+body {
+    line-height: 1.5;
+    font-family: system-ui, sans-serif;
+    font-size: clamp(1rem, 0.8995rem + 0.4673vw, 1.25rem);
+    position: relative;
+}
+
+:focus-visible {
+    outline: 0.125rem solid var(--focus);
+    outline-offset: 0.125rem;
+}
+abbr[title] {
+    text-decoration: none;
+    border-bottom: 0.0625rem dotted var(--fg);
+}
+
+input {
+    font-family: inherit;
+    font-size: inherit;
+}
+
+h1,
+h2,
+h3 {
+    font-weight: normal;
+}
+
+h1,
+.h1 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    line-height: 1;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(1.25rem, 0.9486rem + 1.4019vw, 2rem);
+
+    & img {
+        max-width: 4.6875rem;
+        height: auto;
+    }
+}
+
+h2 {
+    line-height: normal;
+}
+
+button {
+    all: unset;
+    cursor: pointer;
+    padding: 0.3125rem 0.9375rem;
+    box-shadow: var(--shadow);
+    border-radius: 0.3125rem;
+    background-color: goldenrod;
+    color: black;
+    font-weight: 600;
+
+    @media (hover: hover) {
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+
+    &[disabled] {
+        cursor: not-allowed;
+        opacity: var(--opacity-disabled);
+    }
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+details {
+    padding: 0.625rem 1.25rem;
+    background-color: var(--bg);
+}
+
+details summary {
+    cursor: pointer;
+    transition: margin 500ms ease-out;
+}
+
+details[open] summary {
+    margin-block-end: 0.625rem;
+}
+
+.bold {
+    font-weight: var(--bold);
+}
+
+.link-external {
+    color: var(--fg);
+    text-decoration: none;
+    white-space: nowrap;
+
+    &:hover {
+        text-decoration: underline;
+    }
+
+    &::after {
+        content: " \27F6";
+    }
+}
+
+.theme-toggler {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    padding: 0.3125rem 0.625rem;
+
+    & button {
+        font-size: clamp(0.875rem, 0.8248rem + 0.2336vw, 1rem);
+        font-family: inherit;
+        background-color: var(--bg-main);
+        width: 1.5625rem;
+        height: 0.8125rem;
+        border-radius: 1.25rem;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding: 0.125rem;
+
+        & span {
+            height: 0.8125rem;
+            width: 0.8125rem;
+            background-color: white;
+            border-radius: 50%;
+        }
+    }
+
+    & p {
+        font-size: 0.875rem;
+        font-weight: var(--bold);
+        color: currentColor;
+
+        &.light {
+            opacity: 0.75;
+        }
+
+        &.dark {
+            opacity: 1;
+        }
+    }
+}
+
+.lightmode {
+    & .theme-toggler button {
+        justify-content: flex-start;
+    }
+
+    & p {
+        &.light {
+            opacity: 1;
+        }
+
+        &.dark {
+            opacity: 0.5;
+        }
+    }
+}
+
+.page-container {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    height: 100dvh;
+    height: 100vh;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 1.25rem;
+    padding-block: 2.5rem;
+    background-color: var(--bg-main);
+
+    /** 
+    Hack to make ensure nested grid works correctly.
+    For an explanation, see: 
+    https://github.com/chrisnajman/code-snippets?tab=readme-ov-file#nested-grid-unusual-behaviour-fixed-by-min-width0
+  */
+    min-width: 0;
+}
+
+.page-header,
+.page-footer {
+    padding: 2.5rem 1.25rem;
+    text-align: center;
+
+    border-style: solid;
+    border-color: var(--fg);
+}
+
+.page-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9375rem;
+    border-width: 0 0 0.125rem 0;
+}
+
+.page-footer {
+    border-width: 0.125rem 0 0 0;
+    & a {
+        color: var(--fg);
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+
+        &::after {
+            content: " \27F6";
+        }
+    }
+}
+
+.rules {
+    cursor: pointer;
+    width: fit-content;
+    margin-inline: auto;
+    text-align: center;
+    background-color: var(--ui-bg);
+    border: 0.125rem solid var(--fg);
+    border-radius: 0.625rem;
+
+    & ul {
+        text-align: left;
+    }
+
+    & li {
+        margin-block-end: 0.625rem;
+        text-wrap: balance;
+    }
+
+    .close-button {
+        padding-block: 1.25rem;
+    }
+}
+
+.game-ui {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: var(--ui-bg);
+    border: 0.125rem solid var(--fg);
+    border-radius: 0.625rem;
+    padding: 2.5rem 1.25rem;
+    text-align: center;
+    & h2,
+    & p {
+        font-size: clamp(1.25rem, 0.9988rem + 1.1682vw, 1.875rem);
+    }
+
+    & .buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 0.9375rem;
+
+        & button {
+            max-width: fit-content;
+            margin-inline: auto;
+        }
+    }
+}
+
+.cards-sum {
+    opacity: var(--opacity-disabled);
+}
+
+.container {
+    --_content-max-width: 37.5rem;
+    --_content-space-outside: 1.25rem;
+    width: min(var(--_content-max-width), 100% - var(--_content-space-outside) * 2);
+    margin: 0 auto;
+}
+
+/** Text flow */
+.flow > * + * {
+    margin-block-start: 1em;
+    /* em NOT rem & margin-top NOT margin bottom */
+}
+
+/** Skip link */
+.skip-link {
+    color: var(--fg);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.3125rem 0.625rem;
+    margin-inline-end: 0.625rem;
+
+    &::after {
+        content: " \2193";
+    }
+}
+.element-invisible {
+    clip: rect(0.0625rem, 0.0625rem, 0.0625rem, 0.0625rem);
+    height: 0.0625rem;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 200;
+    &.element-focusable:active,
+    &.element-focusable:focus {
+        clip: auto;
+        height: auto;
+        overflow: visible;
+    }
+}
+
+/* Screenreader only */
+.visually-hidden {
+    position: absolute;
+    width: 0.0625rem;
+    height: 0.0625rem;
+    padding: 0;
+    margin: -0.0625rem;
+    overflow: hidden;
+    clip-path: inset(0);
+    border: 0;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+    html,
+    html:focus-within {
+        scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+        transition-delay: 0ms !important;
+    }
+}
+
+/* Always comes last **/
+.hide {
+    display: none;
+}

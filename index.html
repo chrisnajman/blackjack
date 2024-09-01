@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+    <link rel="manifest" href="./site.webmanifest">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blackjack</title>
+    <link rel="stylesheet" href="index.css">
+    <script src="index.js" type="module"></script>
+</head>
+
+<body>
+    <a href="#main-content" class="element-invisible element-focusable skip-link">Skip to main content</a>
+    <div class="theme-toggler">
+        <p class="light">Light<span class="visually-hidden"> theme inactive</span></p><button type="button"
+            aria-pressed="true" aria-label="Toggle theme"><span></span></button>
+        <p class="dark">Dark<span class="visually-hidden"> theme active</span></p>
+    </div>
+    <div class="page-container">
+        <header class="page-header">
+            <p class="h1"><span>Blackjack</span> <img src="./images/cards-icon.png" alt=""></p>
+
+
+        </header>
+        <main class="main-content">
+            <h1 class="visually-hidden">Game</h1>
+
+            <details id="rules" class="rules container">
+                <summary aria-controls="#rules" id="summary" class="summary" aria-expanded="false">
+                    <span id="summary-status" class="visually-hidden">Open</span> Rules of Blackjack
+                </summary>
+                <div class="rules-content flow">
+                    <ul>
+                        <li>Start with £100 in your pot.</li>
+                        <li>Get exactly 21 to win £25.</li>
+                        <li>Your pot is saved, so you can continue playing later.</li>
+                        <li>If you draw a 1 or 11 (ace), you can choose which value to use.</li>
+                        <li>If your total is less than 21, you can draw another card.</li>
+                        <li>If your total goes over 21, you lose £5.</li>
+                    </ul>
+                    <div class="close-button"><button id="close" type="button">Close</button></div>
+                </div>
+            </details>
+            <div id="main-content" class="game-ui container flow" tabindex="0">
+
+                <h2 id="message-el">Click 'Start Game' to play</h2>
+                <div id="cards-sum" class="cards-sum">
+                    <p id="cards-el">Cards:</p>
+                    <p id="sum-el">Sum:</p>
+                </div>
+                <div class="buttons">
+                    <button id="btn-start-game">Start Game</button>
+                    <button id="btn-new-card" disabled>New Card?</button>
+                </div>
+                <p id="player-el">Pot: &pound;<span id="player-chips"></span>
+                </p>
+            </div>
+        </main>
+        <footer class="page-footer">
+            <a href="http://" target="_blank" rel="noopener noreferrer">Git Repository</a>
+        </footer>
+    </div>
+
+
+</body>
+
+</html>
