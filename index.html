@@ -31,27 +31,57 @@
 
             <details id="rules" class="rules container">
                 <summary aria-controls="#rules" id="summary" class="summary" aria-expanded="false">
-                    <span id="summary-status" class="visually-hidden">Open</span> Rules of Blackjack
+                    <span id="summary-status" class="visually-hidden">Open</span> Rules
                 </summary>
                 <div class="rules-content flow">
                     <ul>
                         <li>Start with £100 in your pot.</li>
+                        <li>You are initially dealt two cards.</li>
                         <li>Get exactly 21 to win £25.</li>
                         <li>Your pot is saved, so you can continue playing later.</li>
                         <li>If you draw a 1 or 11 (ace), you can choose which value to use.</li>
                         <li>If your total is less than 21, you can draw another card.</li>
                         <li>If your total goes over 21, you lose £5.</li>
                     </ul>
+
                     <div class="close-button"><button id="close" type="button">Close</button></div>
                 </div>
             </details>
             <div id="main-content" class="game-ui container flow" tabindex="0">
 
                 <h2 id="message-el">Click 'Start Game' to play</h2>
+
+                <dialog class="dialog-ace" id="ace-dialog">
+                    <div class="dialog-content">
+
+                        <img src="./images/ace-icon.png" width="50" alt="Playing card ace" />
+                        <p>You've drawn an ace!
+                            Choose whether you want this to be 1 or 11 (defaults to 1).</p>
+                        <form method="dialog" id="form">
+                            <div class="radios">
+                                <span>
+                                    <label for="one">1</label>
+                                    <input type="radio" name="ace" id="one" value="1" checked="checked">
+                                </span>
+                                <span>
+                                    <label for="eleven">11</label>
+                                    <input type="radio" name="ace" id="eleven" value="11">
+                                </span>
+                            </div>
+                            <button>Submit</button>
+                        </form>
+                    </div>
+                </dialog>
+
+
                 <div id="cards-sum" class="cards-sum">
+
+
                     <p id="cards-el">Cards:</p>
+
                     <p id="sum-el">Sum:</p>
                 </div>
+
                 <div class="buttons">
                     <button id="btn-start-game">Start Game</button>
                     <button id="btn-new-card" disabled>New Card?</button>

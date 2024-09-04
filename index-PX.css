@@ -303,6 +303,64 @@ details[open] summary {
     }
 }
 
+.dialog-ace {
+    background-color: transparent;
+    margin: 0;
+    border: 0;
+    width: 100%;
+    z-index: 100;
+    top: 0;
+}
+
+.dialog-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: fit-content;
+    margin-inline: auto;
+    padding: 20px;
+    background-color: var(--bg);
+    border: 2px solid goldenrod;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    color: var(--fg);
+
+    & form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    & img {
+        width: clamp(3.75rem, 3.2477rem + 2.3364vw, 5rem);
+        width: 50px;
+        margin-inline: auto;
+    }
+    & p {
+        font-size: clamp(1rem, 0.8995rem + 0.4673vw, 1.25rem);
+        text-wrap: balance;
+        max-width: 40ch;
+    }
+    & button {
+        width: fit-content;
+        margin-inline: auto;
+    }
+
+    .radios {
+        display: flex;
+        flex-wrap: wrap;
+        margin-inline: auto;
+        gap: 20px;
+        align-items: center;
+        justify-content: center;
+
+        & span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+    }
+}
+
 .cards-sum {
     opacity: var(--opacity-disabled);
 }

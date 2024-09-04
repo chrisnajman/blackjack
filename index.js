@@ -3,7 +3,6 @@ import btnTheme from "./components/btn-theme.js"
 import details from "./utils/details.js"
 import { POT_KEY } from "./utils/local-storage-keys.js"
 
-/** Darkmode / lightmode */
 btnTheme()
 
 let chips = localStorage.getItem(POT_KEY)
@@ -21,40 +20,46 @@ const cardsEl = document.getElementById("cards-el")
 const playerChips = document.getElementById("player-chips")
 const btnStartGame = document.getElementById("btn-start-game")
 const btnNewCard = document.getElementById("btn-new-card")
+const aceDialog = document.getElementById("ace-dialog")
 
 playerChips.textContent = chips
 
 function getRandomCard() {
   const randomNumber = Math.floor(Math.random() * 13) + 1
-  if (randomNumber > 10 && randomNumber != 11) {
+  if (randomNumber > 10 && randomNumber !== 11) {
     return 10
   } else if (randomNumber === 1 || randomNumber === 11) {
-    const ace = prompt(
-      "You've drawn an ace. Do you want it to be a 1 or an 11? (If you click 'Cancel' or enter any number other than 1 or 11, it will be a 1)",
-      ""
-    )
+    aceDialog.setAttribute("open", "")
 
-    if (
-      ace === null ||
-      ace.trim() === "" ||
-      (Number(ace) !== 1 && Number(ace) !== 11)
-    ) {
-      return 1
-    } else {
-      return Number(ace)
-    }
+    document.getElementById("one").checked = true
+
+    return new Promise((resolve) => {
+      aceDialog.addEventListener(
+        "close",
+        () => {
+          const aceValue = document.querySelector(
+            'input[name="ace"]:checked'
+          ).value
+          const aceValueNumber = Number(aceValue)
+          resolve(aceValueNumber)
+        },
+        { once: true }
+      )
+    })
   } else {
     return randomNumber
   }
 }
 
-btnStartGame.addEventListener("click", () => {
+// Handling async logic in button event listeners
+btnStartGame.addEventListener("click", async () => {
   cards = []
   sum = 0
   isAlive = true
   hasBlackJack = false
-  const firstCard = getRandomCard()
-  const secondCard = getRandomCard()
+
+  const firstCard = await getRandomCard()
+  const secondCard = await getRandomCard()
   cards = [firstCard, secondCard]
   sum = firstCard + secondCard
 
@@ -67,9 +72,9 @@ btnStartGame.addEventListener("click", () => {
   cardsSum.classList.remove("cards-sum")
 })
 
-btnNewCard.addEventListener("click", () => {
+btnNewCard.addEventListener("click", async () => {
   if (isAlive === true && hasBlackJack === false) {
-    const card = getRandomCard()
+    const card = await getRandomCard()
     sum += card
     cards.push(card)
     renderGame()

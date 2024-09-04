@@ -2,7 +2,7 @@
 
 # Description
 
-The goal is to achieve a hand value of exactly 21 to win. The game starts with an initial pot of £100, which is saved locally, allowing players to resume their progress at any time. If a player draws an ace, they can choose whether it should be valued at 1 or 11. Players can continue to draw cards as long as their hand value remains below 21. Exceeding 21 results in a £5 deduction from the pot, while hitting exactly 21 awards the player £25.
+The goal is to achieve a hand value of exactly 21 to win. The game starts with an initial pot of £100, which is saved locally, allowing players to resume their progress at any time. Players are initially dealt two cards, after which they can choose to draw additional cards. If a player draws an ace, they can decide whether it should be valued at 1 or 11. Players can continue to draw cards as long as their hand value remains below 21. Exceeding 21 results in a £5 deduction from the pot, while hitting exactly 21 awards the player £25.
 
 # Functionality
 
